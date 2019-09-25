@@ -13,6 +13,7 @@
 #     if(a != 0) : print(a / b)
 #     else: print('Error. Division by zero!')
 
+
 # Task 2
 print('Enter your expression (i.e. 13+37): ')
 result = input()
