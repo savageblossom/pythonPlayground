@@ -1,25 +1,6 @@
-#
-# # Task 1
-# print('Enter number a: ')
-# a = int(raw_input())
-# print('Enter number b: ')
-# b = int(raw_input())
-# print('Enter operation (+, -, *, /): ')
-# op = str(raw_input())
-#
-# if(op == "+") : print(a + b)
-# elif(op == "-") : print(a - b)
-# elif(op == "*") : print(a * b)
-# elif(op == "/") :
-#     if(a != 0) : print(a / b)
-#     else: print('Error. Division by zero!')
+# Lab 4
 
-
-# Task 2
-
-'''
-    Whenever isNumber(x) exists, it is checking to see if x is a number, obviously.
-'''
+# Checking to see if x is a number
 def isNumber(item):
     try:
         float(item)
@@ -27,13 +8,12 @@ def isNumber(item):
     except ValueError:
         return False
 
-
 def readExpression():
-    # First part gets string and deletes whitespace
-    astring = "2 + 3 * (24 - 66.6 / (333-133)) - 69 + (1488 - (666 * (1+1)))"
+    # Gets string and deletes whitespace
+    astring = raw_input('Enter your expression: \n')
     astring = astring.replace(" ", "")
 
-    # Next it will check if there are any unsupported characters in the string
+    # After that it will check if there are any unsupported characters in the string
     for item in astring:
         if item not in '0123456789+-*/.()':
             print ("Error! \nUnsupported character: " + item)
@@ -44,13 +24,9 @@ def readExpression():
     for item in astring:
         list.append(item)
 
-    # It combines individual numbers into actual numbers based on user input
+    # It combines individual numbers into actual numbers based on input
     count = 0
     while count < len(list) - 1:
-        if isNumber(list[count]) and list[count + 1] == "(":
-            print ("Program does not accept parentheses directly after\
-             number, must have operator in between.")
-            exit()
         if isNumber(list[count]) and isNumber(list[count + 1]):
             list[count] += list[count + 1]
             # print(list[count])
@@ -63,7 +39,7 @@ def readExpression():
         else:
             count += 1
 
-    print(list)
+    # print(list)
     return list
 
 
@@ -100,14 +76,14 @@ while len(main) != 1:
                 del main[i + 2]
                 del main[i]
 
-    # After that is done, it will multiply and divide what it can
+    # Multiply OR Divide
     for i, e in enumerate(main):
         if main[i] in ["*", "/"] and not (main[i+1] in '()' or main[i-1] in '()'):
             main[i - 1] = performOperation(main[i - 1], main[i], main[i + 1])
             del main[i + 1]
             del main[i]
 
-    # Then it will add and substract what it can
+    # Add OR Substract
     for i, e in enumerate(main):
         if main[i] in ["+", "-"] and not (main[i+1] in '()' or main[i-1] in '()'):
             main[i - 1] = performOperation(main[i - 1], main[i], main[i + 1])
