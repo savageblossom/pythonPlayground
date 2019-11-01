@@ -31,11 +31,25 @@ import re
 # print(numberList)
 # print(listOfOperations)
 
-def innermostParenthesis(text):
-    if not '(' and not ')' in text:
-        return text
-    open  = text.index('(')
-    close = text.rindex(')')
+def solve(str):
+    # Removal of spaces
+    listToWorkWith = ""
+    for x in str:
+        if x != " ":
+            listToWorkWith += x
+
+    listOfNumbers    = re.findall(r'\d+', listToWorkWith)
+    listOfOperations = re.findall(r'\W+', listToWorkWith)
+    expressionList   = []
+    length           = len(listOfNumbers) + len(listOfOperations)
+
+    for x in range(1, len(listOfNumbers)+1):
+        expressionList.append(listOfNumbers[x])
+        if(listOfOperations.index(x)):
+            expressionList.append(listOfOperations[x])
+    return expressionList
+
+print(solve('123+123/123'))
 
 # for x in listOfOperations:
 #     if(x == '*') :
