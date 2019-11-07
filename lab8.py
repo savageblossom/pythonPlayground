@@ -1,16 +1,16 @@
 print('Greetings!\nThere\'s no list detected. Wanna create new empty list? (y/n)')
-answer = input()
+answer = raw_input()
 if(answer == "y"):
     myList = []
     print('New list has beed created. How it looks:')
     print(myList)
     print('Want to modify it? (y/n)')
-    answer = input()
+    answer = raw_input()
     if(answer == "y"):
         print('Type /help to get all commands to work with your list')
         while(True):
 
-            action = input().split(' ')
+            action = raw_input().split(' ')
 
             if  ('/help' in action):
                 helpList = [
